@@ -1,10 +1,5 @@
 import itemsGallery from "./gallery-items.js";
 
-
-
-// Пролистывание изображений галереи в открытом модальном окне клавишами "влево" и "вправо".
-
-
 const gallery = document.querySelector('.js-gallery');
 const modal = document.querySelector('.js-lightbox');
 const modalImg = document.querySelector('.lightbox__image');
