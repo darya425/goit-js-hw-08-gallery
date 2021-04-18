@@ -94,8 +94,11 @@ function onEscCloseModal(evt) { // повесила событие только 
 
 // Карусель
 
-modal.insertAdjacentHTML('beforeend', '<button type="button" class="lightbox__button right" data-action="next-lightbox"></button>');
-modal.insertAdjacentHTML('beforeend', '<button type="button" class="lightbox__button left" data-action="back-lightbox"></button>');
+modal.insertAdjacentHTML('beforeend',
+  `<button type="button" class="lightbox__button left" data-action="next-lightbox"></button> 
+  <button type="button" class="lightbox__button right" data-action="next-lightbox"></button> 
+`);
+
 
 const backRef = document.querySelector('.lightbox__button.left'); // кнопка влево
 const nextRef = document.querySelector('.lightbox__button.right'); // кнопка вправо
