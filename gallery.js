@@ -48,8 +48,8 @@ function openModal(evt) {
     window.addEventListener('keydown', onPressEsc); // закрытие модалки на ESC работает только при открытой модалке
     window.addEventListener('keydown', onArrowRight); // при открытой модалке клик по правой стрелке на клаве
     window.addEventListener('keydown', onArrowLeft);
-    backRef.addEventListener('click', onLeftNext(itemsGallery)); // слушатель для перемотки влево
-    nextRef.addEventListener('click', onRightNext(itemsGallery)); // слушатель для перемотки вправо
+    backRef.addEventListener('click', onLeftNext); // слушатель для перемотки влево
+    nextRef.addEventListener('click', onRightNext); // слушатель для перемотки вправо
 
     if (evt.target === evt.currentTarget) { // если таргет не таргет, то не работает
         return;
@@ -65,8 +65,8 @@ function onCloseModal() {
     window.removeEventListener('keydown', onPressEsc); // сняла событие клавиши после закрытия модалки
     window.removeEventListener('keydown', onArrowRight); // при закрытой модалке клик по правой стрелке на клавене работает
     window.removeEventListener('keydown', onArrowLeft);
-    backRef.removeEventListener('click', onLeftNext(itemsGallery)); // слушатель для перемотки влево
-    nextRef.removeEventListener('click', onRightNext(itemsGallery)); // слушатель для перемотки вправо
+    backRef.removeEventListener('click', onLeftNext); // слушатель для перемотки влево
+    nextRef.removeEventListener('click', onRightNext); // слушатель для перемотки вправо
 
     modal.classList.remove('is-open'); // удалила класс модалки
     modalImg.src = "";
@@ -94,20 +94,21 @@ function onBackdropClick(evt) {
 // стучим по кнопке вправо
 function onArrowRight(evt) {
   if (evt.code === "ArrowRight") {
-    onRightNext(itemsGallery)
+    onRightNext()
   }
 }
 
 // стучим по кнопке влево
 function onArrowLeft(evt) {
   if (evt.code === "ArrowLeft") {
-    onLeftNext(itemsGallery)
+    onLeftNext()
   }
 }
 
 
 // правая стрелка
-function onRightNext(items) {
+function onRightNext() {
+    const items = itemsGallery;
     const activeImage = items.find(img => img.original === modalImg.src);
     let index = activeImage ? items.indexOf(activeImage) : 0;
     if (index < items.length - 1) {
@@ -120,7 +121,8 @@ function onRightNext(items) {
 }
 
 // левая стрелка
-function onLeftNext(items) {
+function onLeftNext() {
+    const items = itemsGallery;
     const activeImage = items.find(img => img.original === modalImg.src);
     let index = activeImage ? items.indexOf(activeImage) : items.length - 1;
     if (index === 0) {
